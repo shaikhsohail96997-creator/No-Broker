@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Broker - Direct Deals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .hero {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            background-color: #e9ecef;
+        }
+        .feature {
+            text-align: center;
+            max-width: 300px;
+        }
+        .search-filter {
+            padding: 20px;
+            background-color: #fff;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .search-filter input, .search-filter select {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .apartments {
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+        .apartments h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .apartment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .apartment {
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .apartment img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .apartment h3 {
+            margin-top: 0;
+        }
+        .apartment p {
+            margin: 10px 0;
+        }
+        .apartment .price {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .apartment button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .apartment button:hover {
+            background-color: #0056b3;
+        }
+        .testimonials {
+            padding: 40px 20px;
+            background-color: #e9ecef;
+            text-align: center;
+        }
+        .testimonial {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .contact {
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+        .contact h2 {
+            text-align: center;
+        }
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact input, .contact textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .contact button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .contact button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>No Broker</h1>
+        <p>Direct deals without the middleman. Buy, sell, and trade effortlessly.</p>
+    </header>
+    
+    <section class="hero">
+        <h2>Welcome to No Broker</h2>
+        <p>Skip the brokers and connect directly. Whether it's real estate, stocks, or services, we've got you covered.</p>
+        <a href="#features">Learn More</a>
+    </section>
+    
+    <section id="features" class="features">
+        <div class="feature">
+            <h3>Direct Transactions</h3>
+            <p>No fees, no commissions. Deal directly with buyers and sellers.</p>
+        </div>
+        <div class="feature">
+            <h3>Secure Platform</h3>
+            <p>Built with security in mind. Your data stays safe.</p>
+        </div>
+        <div class="feature">
+            <h3>Easy to Use</h3>
+            <p>Simple interface for listing and finding deals in minutes.</p>
+        </div>
+    </section>
+    
+    <section class="search-filter">
+        <h2>Find Your Perfect Apartment</h2>
+        <input type="text" id="searchInput" placeholder="Search by location (e.g., Kothrud)">
+        <select id="priceFilter">
+            <option value="">All Prices</option>
+            <option value="low">Under ₹50,00,000</option>
+            <option value="mid">₹50,00,000 - ₹80,00,000</option>
+            <option value="high">Over ₹80,00,000</option>
+        </select>
+        <button onclick="filterApartments()">Search</button>
+    </section>
+    
+    <section class="apartments">
+        <h2>Featured Apartments in Pune</h2>
+        <div class="apartment-grid" id="apartmentGrid">
+            <div class="apartment" data-location="Kothrud" data-price="5000000">
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=300&h=200&fit=crop" alt="Sunshine Residency apartment">
+                <h3>Sunshine Residency</h3>
+                <p>Location: Kothrud, Pune</p>
+                <p>2 BHK, 1200 sq ft, Fully furnished.</p>
+                <p class="price">Price: ₹50,00,000</p>
+                <button onclick="alert('Contact: owner@sunshine.com')">Contact Owner</button>
+            </div>
+            <div class="apartment" data-location="Hinjewadi" data-price="7500000">
+                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=300&h=200&fit=crop" alt="Green Valley Towers apartment">
+                <h3>Green Valley Towers</h3>
+                <p>Location: Hinjewadi, Pune</p>
+                <p>3 BHK, 1500 sq ft, Balcony view.</p>
+                <p class="price">Price: ₹75,00,000</p>
+                <button onclick="alert('Contact: owner@greenvalley.com')">Contact Owner</button>
+            </div>
+            <div class="apartment" data-location="Aundh" data-price="3500000">
+                <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=300&h=200&fit=crop" alt="River View Apartments apartment">
+                <h3>River View Apartments</h3>
+                <p>Location: Aundh, Pune</p>
+                <p>1 BHK, 800 sq ft, Near metro.</p>
+                <p class="price">Price: ₹35,00,000</p>
+                <button onclick="alert('Contact: owner@riverview.com')">Contact Owner</button>
+            </div>
+            <div class="apartment" data-location="Wakad" data-price="5500000">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=300&h=200&fit=crop" alt="Elite Heights apartment">
+                <h3>Elite Heights</h3>
+                <p>Location: Wakad, Pune</p>
+                <p>2 BHK, 1100 sq ft, Gym included.</p>
+                <p class="price">Price: ₹55,00,000</p>
+                <button onclick="alert('Contact: owner@eliteheights.com')">Contact Owner</button>
+            </div>
+            <div class="apartment" data-location="Baner" data-price="7000000">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=300&h=200&fit=crop" alt="Urban Nest apartment">
+                <h3>Urban Nest</h3>
+                <p>Location: Baner, Pune</p>
+                <p>3 BHK, 1400 sq ft, Pet-friendly.</p>
+                <p class="price">Price: ₹70,00,000</p>
+                <button onclick="alert('Contact: owner@urbannest.com')">Contact Owner</button>
+            </div>
+            <div class="apartment" data-location="Pimple Saudagar" data-price="4500000">
+                <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=300&h=200&fit=crop" alt="Harmony Homes apartment">
+                <h3>Harmony Homes</h3>
+                <p>Location: Pimple Saudagar, Pune</p>
+                <p>2 BHK, 1000 sq ft, Garden access.</p>
+                <p class="price">Price: ₹45,00,000</p>
+                <button onclick="alert('Contact: owner@harmony.com')">Contact Owner</button>
+            </div>
+            <div class="apartment" data-location="Koregaon Park" data-price="12000000">
+                <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=300&h=200&fit=crop" alt="Skyline Residences apartment">
+                <h3>Skyline Residences</h3>
+                <p>Location: Koregaon Park, Pune</p>
+                <p>4 BHK, 2000 sq ft, Luxury finish.</p>
+                <p class="price">Price: ₹1,20,00,000</p>
+                <button onclick="alert('Contact: owner@skyline.com')">Contact Owner</button>
+            </div>
+            <div class="apartment" data-location="Shivaji Nagar" data-price="4000000">
+                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=300&h=200&fit=crop" alt="Metro Plaza apartment">
+                <h3>Metro Plaza</h3>
+                <p>Location: Shivaji Nagar, Pune</p>
+                <p>1 BHK, 750 sq ft, City center.</p>
+                <p class="price">Price: ₹40,00,000</p>
+                <button onclick="alert('Contact: owner@metroplaza.com')">Contact Owner</button>
+            </div>
+            <div class="apartment" data-location="Lonavala" data-price="8000000">
+                <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?w=300&h=200&fit=crop" alt="Tranquil Villas apartment">
+                <h3>Tranquil Villas</h3>
+                <p>Location: Lonavala (near Pune), Pune</p>
+                <p>3 BHK, 1600 sq ft, Hill view.</p>
+                <p class="price">Price: ₹80,00,000</p>
+                <button onclick="alert('Contact: owner@tranquil.com')">Contact Owner</button>
+            </div>
+            <div class="apartment" data-location="Viman Nagar" data-price="6000000">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=200&fit=crop" alt="Modern Meadows apartment">
+                <h3>Modern Meadows</h3>
+                <p>Location: Viman Nagar, Pune</p>
+                <p>2 BHK, 1300 sq ft, Modern amenities.</p>
+                <p class="price">Price: ₹60,00,000</p>
+                <button onclick="alert('Contact: owner@modernmeadows.com')">Contact Owner</button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial">
+            <p>"No Broker helped me find my dream home in Pune without any hassle. Direct contact with the owner saved me thousands!"</p>
+            <p>- Prasad S Sarkate</p>
+        </div>
+        <div class="testimonial">
+            <p>"Sold my apartment quickly and fairly. The platform is straightforward and secure."</p>
+            <p>- Omkar G Maske</p>
+        </div>
+        <div class="testimonial">
+            <p>"Great selection of properties. The search feature made it easy to filter by location."</p>
+            <p>- Rahul R Sirsat</p>
+        </div>
+    </section>
+    
+    <section class="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2023 No Broker. All rights reserved. <a href="#">Contact Us</a></p>
+    </footer>
+    
+    <script>
+        function filterApartments() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const priceFilter = document.getElementById('priceFilter').value;
+            const apartments = document.querySelectorAll('.apartment');
+            
+            apartments.forEach(apartment => {
+                const location = apartment.getAttribute('data-location').toLowerCase();
+                const price = parseInt(apartment.getAttribute('data-price'));
+                let show = true;
+                
+                if (searchInput && !location.includes(searchInput)) {
+                    show = false;
+                }
+                
+                if (priceFilter) {
+                    if (priceFilter === 'low' && price >= 5000000) show = false;
+                    if (priceFilter === 'mid' && (price < 5000000 || price > 8000000)) show = false;
+                    if (priceFilter === 'high' && price <= 8000000) show = false;
+                }
+                
+                apartment.style.display = show ? 'block' : 'none';
+            });
+        }
+        
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
+
